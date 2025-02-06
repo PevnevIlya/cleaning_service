@@ -1,0 +1,18 @@
+<div class="card">
+    <span style="font-weight: bold; background-color: black; color: #f7f7f7">{{ category.component_type }}</span>
+    {% for component in category.components %}
+        <div>
+            <span style="font-weight: bold">{{ component.name }}</span>
+             -
+            <span style="font-weight: bold">${{ component.price_in_usd }}</span>
+            <form action="{% url 'add_component' %}" method="post" style="display: inline-block">
+                {% csrf_token %}
+                <input type="text" hidden name="component_id" value="{{ component.id }}">
+                <input type="text" hidden name="entry_id" value="{{ entry_id }}">
+                <button class="add" type="submit">+</button>
+            </form>
+        </div>
+
+    {% endfor %}
+
+</div>
